@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Mahalakshmi G — iOS Developer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #12151a; --bg-raised: #1a1e25; --line: #262b33;
+    --text: #eceef1; --text-dim: #8b93a1; --accent: #fa7343; --accent-soft: #3a2a22;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-padding-top: env(safe-area-inset-top, 0px); }
+  body {
+    margin: 0; background: var(--bg); color: var(--text);
+    font-family: 'Inter', -apple-system, sans-serif; line-height: 1.55;
+    padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  .wrap { max-width: 880px; margin: 0 auto; padding: 0 1.5rem 6rem; }
+  .prompt { color: var(--accent); font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; display: block; margin-bottom: 0.6rem; }
+
+  /* Hero */
+  .hero {
+    display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 2.5rem; align-items: center;
+    padding: 4.5rem 0 2rem; border-bottom: 1px solid var(--line);
+  }
+  .hero h1 { font-size: clamp(2.3rem, 5vw, 3.2rem); margin: 0 0 0.4rem; line-height: 1.12; }
+  .hero .role { color: var(--text-dim); font-size: 1.15rem; margin: 0 0 1.4rem; }
+  .hero .role span { color: var(--text); font-weight: 600; }
+  .contact-line { display: flex; flex-wrap: wrap; gap: 0.9rem 1.3rem; font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: var(--text-dim); margin-bottom: 1.6rem; }
+  .contact-line a { color: var(--text-dim); text-decoration: none; border-bottom: 1px solid var(--line); }
+  .contact-line a:hover, .contact-line a:focus-visible { color: var(--accent); border-color: var(--accent); }
+  .stat-row { display: flex; gap: 2rem; }
+  .stat b { font-size: 1.6rem; display: block; color: var(--accent); font-family: 'JetBrains Mono', monospace; }
+  .stat span { font-size: 0.78rem; color: var(--text-dim); }
+  nav { display: flex; gap: 1.4rem; margin-top: 1.8rem; flex-wrap: wrap; }
+  nav a { color: var(--text-dim); text-decoration: none; font-family: 'JetBrains Mono', monospace; font-size: 0.82rem; border-bottom: 1px solid transparent; padding-bottom: 2px; transition: color .15s, border-color .15s; }
+  nav a:hover, nav a:focus-visible { color: var(--accent); border-color: var(--accent); }
+
+  .phone-frame { justify-self: center; }
+  .phone-frame svg { width: 100%; max-width: 230px; height: auto; }
+
+  section { margin-top: 4.5rem; }
+  section h2 { font-size: 1.4rem; margin: 0 0 1.2rem; }
+  p { color: var(--text-dim); max-width: 65ch; }
+
+  .skills-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 1rem; margin-top: 1.5rem; }
+  .skill-group { background: var(--bg-raised); border: 1px solid var(--line); border-radius: 10px; padding: 1.1rem 1.2rem; }
+  .skill-group .icon { width: 30px; height: 30px; margin-bottom: 0.6rem; }
+  .skill-group .cat { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: var(--accent); display: block; margin-bottom: 0.4rem; }
+  .skill-group .items { font-size: 0.85rem; color: var(--text); line-height: 1.5; }
+
+  .job { border-left: 2px solid var(--line); padding: 0 0 0 1.4rem; margin-bottom: 2.6rem; position: relative; }
+  .job::before { content: ''; position: absolute; left: -6px; top: 4px; width: 10px; height: 10px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 4px var(--accent-soft); }
+  .job .when { font-family: 'JetBrains Mono', monospace; font-size: 0.78rem; color: var(--accent); }
+  .job h3 { margin: 0.3rem 0 0.15rem; font-size: 1.08rem; }
+  .job .place { color: var(--text-dim); font-size: 0.92rem; margin: 0 0 0.7rem; }
+  .job ul { margin: 0; padding-left: 1.1rem; }
+  .job li { color: var(--text-dim); font-size: 0.92rem; margin-bottom: 0.5rem; }
+  .job li b { color: var(--text); font-weight: 600; }
+
+  .project-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1.1rem; }
+  .project { background: var(--bg-raised); border: 1px solid var(--line); border-radius: 12px; padding: 1.5rem; }
+  .project .app-icon { width: 44px; height: 44px; border-radius: 11px; margin-bottom: 1rem; display: flex; align-items: center; justify-content: center; font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 1.1rem; color: #12151a; }
+  .project h3 { margin: 0 0 0.4rem; font-size: 1.03rem; }
+  .project p { margin: 0 0 0.4rem; font-size: 0.9rem; }
+  .project .stack { font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: var(--accent); margin-top: 0.8rem; }
+
+  .edu { border-left: 2px solid var(--line); padding: 0 0 0 1.4rem; position: relative; }
+  .edu::before { content: ''; position: absolute; left: -6px; top: 4px; width: 10px; height: 10px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 4px var(--accent-soft); }
+  .edu .when { font-family: 'JetBrains Mono', monospace; font-size: 0.78rem; color: var(--accent); }
+  .edu h3 { margin: 0.3rem 0 0.15rem; font-size: 1.05rem; }
+
+  footer { margin-top: 5rem; padding-top: 2rem; border-top: 1px solid var(--line); display: flex; flex-wrap: wrap; gap: 1.5rem; align-items: center; }
+  footer a { color: var(--text); text-decoration: none; font-family: 'JetBrains Mono', monospace; font-size: 0.9rem; border-bottom: 1px solid var(--accent); }
+
+  @media (max-width: 680px) {
+    .hero { grid-template-columns: 1fr; padding-top: 3rem; }
+    .phone-frame { order: -1; max-width: 160px; margin: 0 auto 1rem; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="hero">
+    <div>
+      <span class="prompt">$ whoami</span>
+      <h1>Mahalakshmi G</h1>
+      <p class="role">iOS Developer — <span>Swift, SwiftUI &amp; UIKit</span>. Based in Dubai, UAE.</p>
+      <div class="contact-line">
+        <a href="mailto:mahalakshmi.appdeveloper@gmail.com">mahalakshmi.appdeveloper@gmail.com</a>
+        <a href="tel:+971555061301">+971 555061301</a>
+        <a href="https://linkedin.com/in/mahalakshmi-g-128a80163" target="_blank" rel="noopener">linkedin.com/in/mahalakshmi-g</a>
+      </div>
+      <div class="stat-row">
+        <div class="stat"><b>6</b><span>years iOS</span></div>
+        <div class="stat"><b>3</b><span>companies</span></div>
+        <div class="stat"><b>10K+</b><span>users shipped to</span></div>
+      </div>
+      <nav>
+        <a href="#about">about</a><a href="#skills">skills</a><a href="#experience">experience</a>
+        <a href="#highlights">highlights</a><a href="#education">education</a>
+      </nav>
+    </div>
+    <div class="phone-frame">
+      <svg viewBox="0 0 220 440" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="4" y="4" width="212" height="432" rx="38" fill="#1a1e25" stroke="#333844" stroke-width="2"/>
+        <rect x="16" y="20" width="188" height="400" rx="24" fill="#0d0f13"/>
+        <rect x="80" y="28" width="60" height="16" rx="8" fill="#1a1e25"/>
+        <rect x="30" y="70" width="160" height="34" rx="8" fill="#fa7343"/>
+        <rect x="30" y="116" width="120" height="10" rx="5" fill="#2a2f38"/>
+        <rect x="30" y="134" width="90" height="10" rx="5" fill="#2a2f38"/>
+        <rect x="30" y="168" width="160" height="70" rx="12" fill="#181c23" stroke="#2a2f38"/>
+        <circle cx="52" cy="192" r="10" fill="#fa7343" opacity="0.85"/>
+        <rect x="70" y="186" width="80" height="8" rx="4" fill="#2a2f38"/>
+        <rect x="70" y="200" width="55" height="8" rx="4" fill="#2a2f38"/>
+        <rect x="30" y="252" width="160" height="70" rx="12" fill="#181c23" stroke="#2a2f38"/>
+        <circle cx="52" cy="276" r="10" fill="#fa7343" opacity="0.5"/>
+        <rect x="70" y="270" width="80" height="8" rx="4" fill="#2a2f38"/>
+        <rect x="70" y="284" width="65" height="8" rx="4" fill="#2a2f38"/>
+        <rect x="30" y="340" width="160" height="44" rx="22" fill="none" stroke="#fa7343" stroke-width="2"/>
+        <rect x="60" y="358" width="100" height="8" rx="4" fill="#fa7343"/>
+      </svg>
+    </div>
+  </div>
+
+  <section id="about">
+    <span class="prompt">// about</span>
+    <h2>Shipping native iOS products end to end</h2>
+    <p>
+      Around six years designing, building, and deploying iOS applications — from architecture through
+      App Store release. Strong in Swift, SwiftUI, UIKit, REST API integration, state management, and
+      performance optimization, with a track record of building scalable, high-performance apps on
+      clean, maintainable architecture.
+    </p>
+  </section>
+
+  <section id="skills">
+    <span class="prompt">// stack</span>
+    <h2>Core proficiencies</h2>
+    <div class="skills-grid">
+      <div class="skill-group">
+        <svg class="icon" viewBox="0 0 24 24" fill="none"><path d="M4 17 10 11 4 5" stroke="#fa7343" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 19h8" stroke="#fa7343" stroke-width="2" stroke-linecap="round"/></svg>
+        <span class="cat">language &amp; UI</span>
+        <div class="items">Swift, SwiftUI, UIKit, Objective-C, Auto Layout, Combine</div>
+      </div>
+      <div class="skill-group">
+        <svg class="icon" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="7" height="7" rx="1.5" stroke="#fa7343" stroke-width="2"/><rect x="14" y="3" width="7" height="7" rx="1.5" stroke="#fa7343" stroke-width="2"/><rect x="3" y="14" width="7" height="7" rx="1.5" stroke="#fa7343" stroke-width="2"/><rect x="14" y="14" width="7" height="7" rx="1.5" stroke="#fa7343" stroke-width="2"/></svg>
+        <span class="cat">architecture</span>
+        <div class="items">MVC / MVVM, Clean Architecture, Swift Concurrency (async/await)</div>
+      </div>
+      <div class="skill-group">
+        <svg class="icon" viewBox="0 0 24 24" fill="none"><ellipse cx="12" cy="6" rx="8" ry="3" stroke="#fa7343" stroke-width="2"/><path d="M4 6v6c0 1.66 3.58 3 8 3s8-1.34 8-3V6" stroke="#fa7343" stroke-width="2"/><path d="M4 12v6c0 1.66 3.58 3 8 3s8-1.34 8-3v-6" stroke="#fa7343" stroke-width="2"/></svg>
+        <span class="cat">data &amp; networking</span>
+        <div class="items">REST &amp; GraphQL APIs, Core Data, Alamofire, URLSession</div>
+      </div>
+      <div class="skill-group">
+        <svg class="icon" viewBox="0 0 24 24" fill="none"><path d="M6 15a4 4 0 0 1 0-8 5 5 0 0 1 9.6-1.5A4.5 4.5 0 0 1 18 15H6Z" stroke="#fa7343" stroke-width="2" stroke-linejoin="round"/></svg>
+        <span class="cat">cloud &amp; backend</span>
+        <div class="items">Firebase, AWS Amplify &amp; Cognito, Crashlytics, Push Notifications</div>
+      </div>
+      <div class="skill-group">
+        <svg class="icon" viewBox="0 0 24 24" fill="none"><path d="M12 3 4 6v5c0 4.4 3.2 8.3 8 10 4.8-1.7 8-5.6 8-10V6l-8-3Z" stroke="#fa7343" stroke-width="2" stroke-linejoin="round"/></svg>
+        <span class="cat">security</span>
+        <div class="items">Biometric Auth (Face ID / Touch ID), Keychain, OAuth2, Recaptcha Enterprise, TrustKit</div>
+      </div>
+      <div class="skill-group">
+        <svg class="icon" viewBox="0 0 24 24" fill="none"><rect x="2" y="6" width="20" height="14" rx="2.5" stroke="#fa7343" stroke-width="2"/><path d="M2 10h20" stroke="#fa7343" stroke-width="2"/></svg>
+        <span class="cat">payments</span>
+        <div class="items">Stripe, Razorpay, Payment Gateway Integration</div>
+      </div>
+      <div class="skill-group">
+        <svg class="icon" viewBox="0 0 24 24" fill="none"><path d="M12 2v4M12 18v4M4.9 4.9l2.8 2.8M16.3 16.3l2.8 2.8M2 12h4M18 12h4M4.9 19.1l2.8-2.8M16.3 7.7l2.8-2.8" stroke="#fa7343" stroke-width="2" stroke-linecap="round"/></svg>
+        <span class="cat">tooling &amp; process</span>
+        <div class="items">Xcode, Git, Unit Testing, App Store Deployment, Localization &amp; RTL support</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="experience">
+    <span class="prompt">// experience</span>
+    <h2>Experience</h2>
+
+    <div class="job">
+      <span class="when">02/2023 — 10/2025</span>
+      <h3>iOS Developer</h3>
+      <p class="place">Tata Consultancy Services</p>
+      <ul>
+        <li>Developed and maintained iOS applications on the App Store with <b>90%+ performance efficiency</b>, integrating 10+ third-party libraries (Alamofire, Firebase, Recaptcha Enterprise, TrustKit).</li>
+        <li>Architected scalable apps with <b>MVVM and Clean Architecture</b>, cutting code duplication by <b>30%</b> and improving testability.</li>
+        <li>Added real-time crash tracking via Firebase Crashlytics, reducing bug resolution time by <b>40%</b>; adopted Swift Concurrency (async/await) for smoother networking.</li>
+        <li>Built secure auth with AWS Amplify/Cognito and biometric login (Face ID/Touch ID), improving login speed by <b>50%</b>; managed the full App Store submission lifecycle with a <b>100% approval rate</b>.</li>
+        <li>Implemented Stripe payments, REST/GraphQL integrations, push notifications, and Arabic localization with RTL support.</li>
+      </ul>
+    </div>
+
+    <div class="job">
+      <span class="when">04/2021 — 08/2022</span>
+      <h3>iOS Developer</h3>
+      <p class="place">Meme World Wide India Pvt Ltd</p>
+      <ul>
+        <li>Built and shipped <b>5+ applications</b> using Alamofire, Firebase, and Google Maps for data, analytics, and location services.</li>
+        <li>Implemented APNS push notifications, lifting daily active users by <b>20%</b>.</li>
+        <li>Integrated Stripe (PaymentIntent-based) in <b>2+ commercial apps</b> with PCI-compliant flows, raising successful payment completion by <b>15%</b>.</li>
+      </ul>
+    </div>
+
+    <div class="job">
+      <span class="when">10/2018 — 10/2020</span>
+      <h3>iOS Developer</h3>
+      <p class="place">Hard N Soft Technologies — Autotech SaaS MVP</p>
+      <ul>
+        <li>Led iOS development of an automobile-based MVP in Swift, delivered in <b>3 months</b> and supporting <b>10K+ user registrations</b> post-launch.</li>
+        <li>Standardized reusable frameworks and libraries across the iOS team, lifting development efficiency by <b>30%</b>.</li>
+        <li>Integrated Razorpay for secure in-app payments with robust success/failure handling.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="highlights">
+    <span class="prompt">// selected work</span>
+    <h2>Highlighted projects</h2>
+    <div class="project-grid">
+      <div class="project">
+        <div class="app-icon" style="background:#fa7343;">A</div>
+        <h3>Autotech SaaS MVP</h3>
+        <p>Automobile-based iOS product built from scratch and shipped in 3 months, scaling to 10K+ registered users post-launch.</p>
+        <div class="stack">Swift · MVVM · Razorpay</div>
+      </div>
+      <div class="project">
+        <div class="app-icon" style="background:#e8e2d8;">S</div>
+        <h3>Secure login flow</h3>
+        <p>Biometric authentication with Face ID/Touch ID and Keychain, backed by AWS Cognito and OAuth2 — 50% faster logins.</p>
+        <div class="stack">SwiftUI · AWS Amplify · Cognito</div>
+      </div>
+      <div class="project">
+        <div class="app-icon" style="background:#7c8798;">L</div>
+        <h3>Localized RTL app</h3>
+        <p>Multilingual iOS experience with full right-to-left support, built for regional deployment in the Arabic market.</p>
+        <div class="stack">Swift · Localization · RTL</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="education">
+    <span class="prompt">// education</span>
+    <h2>Education</h2>
+    <div class="edu">
+      <span class="when">2014 — 2018</span>
+      <h3>Bachelor of Engineering, Computer Science</h3>
+      <p style="color:var(--text-dim); margin:0;">PSR Engineering College, Tamil Nadu</p>
+    </div>
+  </section>
+
+  <footer>
+    <a href="mailto:mahalakshmi.appdeveloper@gmail.com">Email</a>
+    <a href="tel:+971555061301">Call</a>
+    <a href="https://linkedin.com/in/mahalakshmi-g-128a80163" target="_blank" rel="noopener">LinkedIn</a>
+  </footer>
+
+</div>
+</body>
+</html>
